@@ -5,41 +5,30 @@
 </template>
 
 <script>
-import { createScene } from "../scenes/MyFirstScene";
+import myScene from "../scenes/MyFirstScene";
 
 export default {
   name: "BabylonScene",
-
-  data() {
-    return {
-      scene: null,
-      engine: null,
-      interval: null,
-    };
+  props: {
+    position: {
+      type: Object,
+      default() {
+        return { x: 0, y: 0, z: 0 };
+      },
+    },
   },
 
-  methods: {
-    setupFpsEmitter() {
-      const interval = setInterval(() => {
-        const fps = this.engine.getFps().toFixed();
-        this.$emit("fps", fps);
-      }, 1000);
-      this.interval = interval;
+  watch: {
+    position(val) {
+      if (val) {
+        myScene.setPosition("box-green", val.x, val.y, val.z);
+      }
     },
   },
   mounted() {
     const bjsCanvas = this.$refs.bjsCanvas;
     if (bjsCanvas) {
-      const { engine, scene } = createScene(bjsCanvas);
-      this.engine = engine;
-      this.scene = scene;
-
-      this.setupFpsEmitter();
-    }
-  },
-  unmounted() {
-    if (this.interval) {
-      clearInterval(this.interval);
+      myScene.createScene(bjsCanvas);
     }
   },
 };
