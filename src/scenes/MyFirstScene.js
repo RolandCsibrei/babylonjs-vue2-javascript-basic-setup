@@ -44,29 +44,6 @@ const createScene = (canvas, fpsCallback) => {
       fpsCallback(engine.getFps().toFixed());
     }
   });
-
-  return { engine, scene };
 };
 
-const setPosition = (name, position, scene) => {
-  const mesh = scene.getMeshByName(name);
-  if (mesh) {
-    mesh.position = new Vector3(position.x, position.y, position.z);
-  }
-};
-
-const getPosition = (name, scene) => {
-  const mesh = scene.getMeshByName(name);
-  if (mesh) {
-    return mesh.position;
-  }
-};
-
-const getRotation = (name, scene) => {
-  const mesh = scene.getMeshByName(name);
-  if (mesh) {
-    return mesh.rotation;
-  }
-};
-
-export { createScene, setPosition, getPosition, getRotation };
+export { createScene };
