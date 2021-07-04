@@ -8,7 +8,7 @@ import {
   Color3,
   HemisphericLight,
 } from "@babylonjs/core";
-const createScene = (canvas, fpsCallback) => {
+const createScene = (canvas) => {
   const engine = new Engine(canvas);
   const scene = new Scene(engine);
 
@@ -39,10 +39,6 @@ const createScene = (canvas, fpsCallback) => {
     scene.render();
 
     boxGreen.rotation.y += 0.01;
-
-    if (fpsCallback) {
-      fpsCallback(engine.getFps().toFixed());
-    }
   });
 
   return { engine, scene };
