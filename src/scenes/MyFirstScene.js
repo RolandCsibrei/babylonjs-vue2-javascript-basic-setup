@@ -8,7 +8,7 @@ import {
   Color3,
   HemisphericLight,
 } from "@babylonjs/core";
-const createScene = (canvas, fpsCallback) => {
+const createScene = (canvas) => {
   const engine = new Engine(canvas);
   const scene = new Scene(engine);
 
@@ -39,34 +39,9 @@ const createScene = (canvas, fpsCallback) => {
     scene.render();
 
     boxGreen.rotation.y += 0.01;
-
-    if (fpsCallback) {
-      fpsCallback(engine.getFps().toFixed());
-    }
   });
 
   return { engine, scene };
 };
 
-const setPosition = (name, position, scene) => {
-  const mesh = scene.getMeshByName(name);
-  if (mesh) {
-    mesh.position = new Vector3(position.x, position.y, position.z);
-  }
-};
-
-const getPosition = (name, scene) => {
-  const mesh = scene.getMeshByName(name);
-  if (mesh) {
-    return mesh.position;
-  }
-};
-
-const getRotation = (name, scene) => {
-  const mesh = scene.getMeshByName(name);
-  if (mesh) {
-    return mesh.rotation;
-  }
-};
-
-export { createScene, setPosition, getPosition, getRotation };
+export { createScene };
